@@ -1,0 +1,62 @@
+﻿<!DOCTYPE html>
+<html lang="ja">
+<head>
+  <meta charset="UTF-8">
+  <title>カード評価設定</title>
+  <style>
+    body { width: 320px; font-family: "Helvetica Neue", Arial, "Hiragino Kaku Gothic ProN", sans-serif; margin: 0; padding: 14px; background-color: #161824; color: #f0f0f5; font-size: 13px; }
+    h2 { font-size: 14px; margin: 0 0 10px 0; padding-bottom: 6px; border-bottom: 1px solid #323650; color: #d4af37; }
+    .section { margin-bottom: 16px; }
+    .evaluator-row { display: flex; gap: 6px; margin-bottom: 6px; align-items: center; }
+    .evaluator-row input { flex: 1; padding: 6px 8px; border-radius: 4px; border: 1px solid #444a6e; background: #222638; color: #fff; font-size: 13px; }
+    .evaluator-row input:focus { outline: none; border-color: #d4af37; }
+    select { width: 100%; padding: 7px; border-radius: 4px; border: 1px solid #444a6e; background: #222638; color: #fff; font-size: 13px; cursor: pointer; outline: none; }
+    select:focus { border-color: #d4af37; }
+    button { cursor: pointer; border: none; border-radius: 4px; padding: 7px 10px; font-size: 12px; font-weight: bold; transition: opacity 0.15s; }
+    button:hover { opacity: 0.85; }
+    .btn-remove { background: #b93838; color: #fff; padding: 6px 10px; }
+    .btn-add { width: 100%; background: #2e3552; color: #d4af37; border: 1px dashed #d4af37; margin-top: 4px; }
+    .btn-primary { width: 100%; background: #2b7a4b; color: #fff; margin-bottom: 8px; padding: 9px; font-size: 13px; }
+    .btn-secondary { width: 100%; background: #375a8c; color: #fff; margin-bottom: 8px; padding: 9px; font-size: 13px; }
+    .btn-info { width: 100%; background: #5a378c; color: #fff; margin-bottom: 8px; padding: 9px; font-size: 13px; }
+    .btn-danger { width: 100%; background: transparent; color: #e06c75; border: 1px solid #e06c75; margin-top: 8px; }
+    .status-bar { font-size: 12px; color: #7ee787; min-height: 18px; text-align: center; margin-top: 6px; }
+    .count-info { font-size: 12px; color: #9da5b4; margin-bottom: 8px; }
+  </style>
+</head>
+<body>
+  <div class="section">
+    <h2>1. 評価メンバー設定</h2>
+    <div id="evaluator-list"></div>
+    <button id="btn-add-evaluator" class="btn-add">＋ 評価者を追加</button>
+  </div>
+
+  <div class="section">
+    <h2>2. 一覧上の評価バッジの表示サイズ</h2>
+    <select id="badge-size-selector">
+      <option value="none">表示しない</option>
+      <option value="small">小</option>
+      <option value="medium" selected>中 (標準)</option>
+      <option value="large">大</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h2>3. 対象パック選択</h2>
+    <select id="pack-selector">
+      <option value="ALL">【全パック一括】</option>
+    </select>
+  </div>
+
+  <div class="section">
+    <h2>4. 評価一覧・出力管理</h2>
+    <div id="rating-count" class="count-info">記録済みカード: 0枚</div>
+    <button id="btn-view-html" class="btn-info">🌐 評価一覧をHTML表示 (表形式)</button>
+    <button id="btn-copy-tsv" class="btn-primary">📋 スプレッドシート用にコピー (TSV)</button>
+    <button id="btn-download-csv" class="btn-secondary">💾 CSVファイルをダウンロード</button>
+    <button id="btn-clear-data" class="btn-danger">🗑 選択中パックの評価をリセット</button>
+    <div id="status-msg" class="status-bar"></div>
+  </div>
+  <script src="popup.js"></script>
+</body>
+</html>

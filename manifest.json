@@ -1,0 +1,31 @@
+﻿{
+  "manifest_version": 3,
+  "name": "Shadowverse WB カード評価ツール",
+  "version": "1.0.0",
+  "description": "Shadowverse: Worlds Beyondのカード詳細画面に5段階評価(S〜D)用のUIを追加します。評価はブラウザローカルに保存され、いつでも参照・出力が可能です。",
+  "permissions": [
+    "storage",
+    "activeTab"
+  ],
+  "web_accessible_resources": [
+    {
+      "resources": ["images/*"],
+      "matches": ["https://shadowverse-wb.com/*", "chrome-extension://*/*"]
+    }
+  ],
+  "action": {
+    "default_popup": "popup.html",
+    "default_title": "カード評価設定・出力"
+  },
+  "icons": {
+    "128": "images/svwb-card-evaluator.png"
+  },
+  "content_scripts": [
+    {
+      "matches": ["https://shadowverse-wb.com/*"],
+      "js": ["content.js"],
+      "css": ["style.css"],
+      "run_at": "document_idle"
+    }
+  ]
+}
